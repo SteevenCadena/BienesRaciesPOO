@@ -1,0 +1,59 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.seccion-inferior{
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+@include m.tablet{
+    .seccion-inferior{
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 2rem;
+    }
+
+}
+
+.infromacion-meta{
+    span{
+        color: v.$amarillo;
+    }
+}
+
+.entrada-blog{
+    margin-bottom: 2rem;
+    @include m.tablet{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        column-gap: 2rem;
+    }
+    &:last-of-type{
+        margin-bottom: 0;
+        
+    }
+}
+
+.texto-entrada{
+    a{
+        color: v.$negro;
+        display: block;
+    }
+    h4{
+        margin: 0;
+        line-height: 1.4;
+
+        &::after{
+            content: '';
+            margin-top: 1rem;
+            display: block;
+            width: 15rem;
+            height: .5rem;
+            background-color: v.$verde;
+        }
+    }
+    p{
+        font-size: 1.5rem;
+    }
+    
+}

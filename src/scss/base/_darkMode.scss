@@ -1,0 +1,30 @@
+@use 'base/mixins' as m;
+@use 'base/variables' as v;
+
+.dark-mode{
+    background-color: darken(v.$grisOscuro, 10%);
+    p{
+        color: v.$blanco;
+    }
+
+    a,h1,h2,h3,h4{
+        color: v.$gris;
+    }
+    .anuncio, .resumen-propiedad{
+        background-color: v.$grisOscuro;
+        border: 1px solid v.$grisOscuro;
+        .precio{
+            color: v.$verde;
+        }
+        .icono {
+            filter: invert(100%);
+        }
+    }
+
+    .formulario{
+        label,legend,p{
+            color: v.$gris;
+        }
+    }
+    
+}

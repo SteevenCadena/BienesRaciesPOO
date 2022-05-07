@@ -1,0 +1,51 @@
+@use 'variables' as v;
+// @use 'base/mixins' as m;
+
+@mixin phone {
+    @media (min-width: v.$telefono) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: v.$tablet) {
+        @content;
+    }
+}
+@mixin desktop {
+    @media (min-width: v.$desktop) {
+        @content;
+    }
+}
+@mixin desktopXL {
+    @media (min-width: v.$desktopXL) {
+        @content;
+    }
+}
+
+@mixin grid($columnas, $espaciado) {
+    display: grid;
+    grid-template-columns: repeat($columnas, 1fr);
+    gap: $espaciado;
+}
+
+@mixin resetear-lista {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+@mixin boton($bgColor, $display) {
+    background-color: $bgColor;
+    color: v.$blanco;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    display: $display;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    &:hover{
+        background-color: darken($bgColor,5);
+    }
+}
