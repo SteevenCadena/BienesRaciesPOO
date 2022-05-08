@@ -8,6 +8,9 @@ class Propiedad {
     protected static $db;
     protected static $columnasDB = ['id', 'titulo', 'precio', 'imagen', 'descripcion', 'habitaciones', 'wc', 'estacionamiento', 'creado', 'vendedorId'];
 
+    // Errores
+    protected static $errores= [];
+
     public $id;
     public $titulo;
     public $precio;
@@ -47,13 +50,13 @@ class Propiedad {
         $query = "INSERT INTO propiedades ( ";
         $query .= join(', ', array_keys( $atributos) );
         $query .= " ) VALUES (' ";
-        $query .= join(', ', array_values( $atributos) );
+        $query .= join("', '", array_values( $atributos) );
         $query .= " ') ;";
         
-        debuguear( $query );
+        // debuguear( $query );
 
         $restultado = self::$db->query( $query );
-        debuguear($restultado);
+        // debuguear($restultado);
     }
 
     //Identifica y une los atributos de la BD
@@ -80,6 +83,44 @@ class Propiedad {
 
     }
 
+    // Validación
+    public static function getErrores() {
+        return self::$errores;
+    }
     
 
+    public function validar() {
+        if( !$this->titulo ) {
+            self::$errores[] = 'Debes añadir un título';
+        }
+        if( !$this->precio ) {
+            $errores[] = 'El precio es obligdatorio';
+        }
+        if(strlen( $this->descripcion ) < 50) {
+            $errores[] = 'La desdescripcion es obligdatorio y debe tener al menos 50 caracteres';
+        }
+        
+        if( !$this->habitaciones ) {
+            $errores[] = 'El numero de habitaciones es obligdatorio';
+        }
+        if( !$this->wc ) {
+            $errores[] = 'El numero de baños es obligdatorio';
+        }
+        if( !$this->estacionamiento ) {
+            $errores[] = 'El numero de esrtacionamientos es obligdatorio';
+        }
+        if( !$this->vendedorId ) {
+            $errores[] = 'Elije un vendedor';
+        }
+        // if( !$this->imagen['name'] || $this->imagen['error'] ) {
+        //     $errores[] = 'La imagen es obligatoria';
+        // }
+
+        // //validar por tamaño (100 Kb maximo)
+        // $medida = 1000 * 1000;//un mega
+
+        // if( $this->imagen ['size'] > $medida){
+        //     $errores[] = 'La imagen es muy pesada';
+        // }
+    }
 }
